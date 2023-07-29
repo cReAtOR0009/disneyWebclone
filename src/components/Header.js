@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory,  } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { auth, provider } from "../firebase";
 import {
   selectUserName,
@@ -12,10 +12,11 @@ import {
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
+  const BASE_URL = "http://localhost:3000"
   const setUser = (user) => {
     dispatch(
       setUserLoginDetails({
@@ -30,7 +31,8 @@ const Header = (props) => {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-        history.push("/home");
+        // history.push("/home");
+        window.location =`${BASE_URL}/home`
       }
     });
   }, [userName]);
@@ -50,7 +52,9 @@ const Header = (props) => {
         .signOut()
         .then(() => {
           dispatch(setSignOutState());
-          history.push("/");
+          // history.push("/");
+          window.location =`${BASE_URL}`
+
         })
         .catch((err) => alert(err.message));
     }
