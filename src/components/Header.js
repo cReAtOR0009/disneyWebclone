@@ -18,7 +18,7 @@ const Header = (props) => {
 
   const BASE_URL = "http://localhost:3000"
   const setUser = (user) => {
-    dispatch(
+   return dispatch(
       setUserLoginDetails({
         name: user.displayName,
         email: user.email,
@@ -28,6 +28,7 @@ const Header = (props) => {
   };
 
   useEffect(() => {
+    
     auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
