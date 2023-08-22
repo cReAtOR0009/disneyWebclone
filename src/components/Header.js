@@ -16,7 +16,7 @@ const Header = (props) => {
   const userName = useSelector(selectUserName);
   const userPhoto = useSelector(selectUserPhoto);
 
-  const BASE_URL = "disneywebclone.netlify.app"
+  const BASE_URL = "https://disneywebclone2.netlify.app"
   const setUser = (user) => {
    return dispatch(
       setUserLoginDetails({
@@ -53,8 +53,8 @@ const Header = (props) => {
         .signOut()
         .then(() => {
           dispatch(setSignOutState());
-          // history.push("/");
-          window.location =`${BASE_URL}`
+          history.push("/");
+          // window.location =`${BASE_URL}`
 
         })
         .catch((err) => alert(err.message));
